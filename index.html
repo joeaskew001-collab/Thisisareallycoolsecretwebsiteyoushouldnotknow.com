@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Book — Comedy, Politics & Cool</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1612;
+    --paper: #f5f0e8;
+    --cream: #ede7d9;
+    --accent: #c94f2a;
+    --muted: #7a7060;
+    --border: #d4cbbb;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: var(--paper);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--muted);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+  }
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5rem 4rem 5rem 5rem;
+    border-right: 1px solid var(--border);
+  }
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    line-height: 1.1;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+  }
+  .hero-title em { font-style: italic; color: var(--accent); }
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 380px;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1.5px solid var(--ink);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-fill { background: var(--ink); color: var(--paper); }
+  .btn-fill:hover { background: var(--accent); border-color: var(--accent); }
+  .btn-outline { background: transparent; color: var(--ink); }
+  .btn-outline:hover { background: var(--ink); color: var(--paper); }
+
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem 4rem;
+    background: var(--cream);
+    position: relative;
+  }
+
+  .book-cover-wrap {
+    position: relative;
+    animation: float 5s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+  .book-cover-3d {
+    width: 200px;
+    height: 280px;
+    position: relative;
+    transform: perspective(800px) rotateY(-12deg);
+    transform-style: preserve-3d;
+  }
+  .book-face {
+    width: 200px;
+    height: 280px;
+    background: #1a1612;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.5rem;
+    gap: 1rem;
+    box-shadow: 12px 16px 40px rgba(0,0,0,0.25);
+  }
+  .book-face-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--paper);
+    font-size: 1.05rem;
+    text-align: center;
+    line-height: 1.4;
+    font-weight: 700;
+  }
+  .book-face-line {
+    width: 40px;
+    height: 1.5px;
+    background: var(--accent);
+  }
+  .book-face-author {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .book-spine {
+    position: absolute;
+    left: -16px; top: 0;
+    width: 16px; height: 280px;
+    background: #111;
+    transform: rotateY(90deg) translateZ(-8px);
+    transform-origin: right;
+  }
+  .book-shadow {
+    width: 200px; height: 20px;
+    background: radial-gradient(ellipse, rgba(0,0,0,0.2) 0%, transparent 70%);
+    margin-top: 24px;
+  }
+  .hero-right-label {
+    margin-top: 2.5rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* SECTION SHARED */
+  section { padding: 6rem 5rem; }
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ABOUT BOOK */
+  .about-book {
+    background: var(--ink);
+    color: var(--paper);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+  }
+  .about-book .section-label { color: var(--accent); }
+  .about-book .section-title { color: var(--paper); }
+  .about-text { font-size: 1rem; color: #b8ad9e; line-height: 1.9; }
+  .themes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .theme-card {
+    padding: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .theme-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--paper);
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+    font-style: italic;
+  }
+  .theme-card p { font-size: 0.85rem; color: #8a8070; line-height: 1.7; }
+
+  /* EXCERPT */
+  .excerpt-section {
+    background: var(--cream);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .excerpt-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .pull-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    line-height: 1.5;
+    font-style: italic;
+    color: var(--ink);
+    margin: 2rem 0;
+    position: relative;
+    padding: 0 2rem;
+  }
+  .pull-quote::before, .pull-quote::after {
+    content: '"';
+    font-size: 4rem;
+    color: var(--accent);
+    line-height: 0;
+    vertical-align: -0.4em;
+  }
+  .pull-quote::after { content: '"'; }
+  .excerpt-credit {
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* AUTHOR */
+  .author-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .author-photo {
+    aspect-ratio: 3/4;
+    background: var(--cream);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-align: center;
+    padding: 2rem;
+  }
+  .author-bio { font-size: 1rem; color: var(--muted); line-height: 1.9; }
+  .author-bio p + p { margin-top: 1rem; }
+
+  /* BUY */
+  .buy-section {
+    background: var(--accent);
+    color: var(--paper);
+    text-align: center;
+    padding: 5rem;
+  }
+  .buy-section .section-title { color: var(--paper); }
+  .buy-section p { color: rgba(245,240,232,0.8); max-width: 500px; margin: 0 auto 2.5rem; font-size: 1rem; }
+  .buy-options { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-paper { border-color: var(--paper); color: var(--paper); background: transparent; }
+  .btn-paper:hover { background: var(--paper); color: var(--accent); }
+  .btn-paper-fill { background: var(--paper); color: var(--accent); border-color: var(--paper); }
+  .btn-paper-fill:hover { background: transparent; color: var(--paper); }
+
+  /* NEWSLETTER */
+  .newsletter-section {
+    border-top: 1px solid var(--border);
+    text-align: center;
+    padding: 5rem;
+  }
+  .newsletter-section p { color: var(--muted); max-width: 400px; margin: 0 auto 2rem; }
+  .email-form { display: flex; gap: 0; max-width: 420px; margin: 0 auto; }
+  .email-form input {
+    flex: 1;
+    padding: 0.85rem 1.25rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    background: var(--cream);
+    border: 1.5px solid var(--border);
+    border-right: none;
+    color: var(--ink);
+    outline: none;
+  }
+  .email-form input::placeholder { color: var(--muted); }
+  .email-form button {
+    padding: 0.85rem 1.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    background: var(--ink);
+    color: var(--paper);
+    border: 1.5px solid var(--ink);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .email-form button:hover { background: var(--accent); border-color: var(--accent); }
+  .email-success { display: none; color: var(--accent); font-size: 0.9rem; margin-top: 1rem; }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    color: var(--muted);
+    padding: 2rem 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    border-top: 1px solid #2a2520;
+  }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--paper); }
+
+  /* SCROLL REVEAL */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 3rem 1.5rem; }
+    .hero-right { padding: 3rem 1.5rem; border-top: 1px solid var(--border); }
+    section { padding: 4rem 1.5rem; }
+    .about-book { grid-template-columns: 1fr; gap: 2.5rem; }
+    .author-section { grid-template-columns: 1fr; gap: 2rem; }
+    .buy-section, .newsletter-section, footer { padding: 4rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-brand">Your Name</a>
+  <ul class="nav-links">
+    <li><a href="#book">The Book</a></li>
+    <li><a href="#excerpt">Excerpt</a></li>
+    <li><a href="#author">About</a></li>
+    <li><a href="#buy">Buy</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding:0;">
+  <div class="hero-left">
+    <p class="hero-eyebrow">New release · 2025</p>
+    <h1 class="hero-title">Essays on <em>comedy,</em> politics &amp; the art of cool</h1>
+    <p class="hero-sub">Sharp, funny, and occasionally wise — a collection of pieces on the world as it is, and as it really should be.</p>
+    <div class="hero-actions">
+      <a href="#buy" class="btn btn-fill">Get the book</a>
+      <a href="#excerpt" class="btn btn-outline">Read a sample</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="book-cover-wrap">
+      <div class="book-cover-3d">
+        <div class="book-face">
+          <div class="book-face-line"></div>
+          <span class="book-face-title">Your Book Title Here</span>
+          <div class="book-face-line"></div>
+          <span class="book-face-author">Your Name</span>
+        </div>
+        <div class="book-spine"></div>
+      </div>
+      <div class="book-shadow"></div>
+    </div>
+    <p class="hero-right-label">Available in print &amp; ebook</p>
+  </div>
+</section>
+
+<!-- ABOUT THE BOOK -->
+<section id="book" class="about-book">
+  <div class="reveal">
+    <p class="section-label">The book</p>
+    <h2 class="section-title">Why you should care about all three</h2>
+    <p class="about-text">Replace this with your own book description. Tell readers what to expect, what drove you to write it, and what makes this collection unlike anything else out there. Be as bold and funny here as you are in the essays themselves.</p>
+  </div>
+  <div class="themes reveal">
+    <div class="theme-card">
+      <h4>Comedy</h4>
+      <p>What laughter reveals about us — and what we use it to hide.</p>
+    </div>
+    <div class="theme-card">
+      <h4>Politics</h4>
+      <p>Ideas worth arguing about, argued about with the vigour they deserve.</p>
+    </div>
+    <div class="theme-card">
+      <h4>Coolness</h4>
+      <p>A moving target, an attitude, and occasionally a state of mind.</p>
+    </div>
+    <div class="theme-card">
+      <h4>Everything else</h4>
+      <p>Whatever doesn't fit a label but felt important to write.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EXCERPT -->
+<section id="excerpt" class="excerpt-section">
+  <div class="excerpt-inner reveal">
+    <p class="section-label">From the book</p>
+    <blockquote class="pull-quote">
+      Paste a memorable line or opening sentence from one of your best essays right here. Make it sing.
+    </blockquote>
+    <p class="excerpt-credit">— Chapter One</p>
+  </div>
+</section>
+
+<!-- AUTHOR -->
+<section id="author" class="author-section">
+  <div class="author-photo reveal">
+    [ Your photo here ]
+  </div>
+  <div class="reveal">
+    <p class="section-label">The author</p>
+    <h2 class="section-title">Your Name</h2>
+    <div class="author-bio">
+      <p>This is where you introduce yourself. Keep it warm, a little funny, and true to your voice — readers of essay collections want to feel like they know the person behind the words.</p>
+      <p>Mention where you're from, what you care about, and what made you write this book. Two or three paragraphs is plenty.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BUY -->
+<section id="buy" class="buy-section">
+  <p class="section-label" style="color:rgba(245,240,232,0.6);">Get your copy</p>
+  <h2 class="section-title">Ready to read?</h2>
+  <p>Available as a paperback and ebook. Pick wherever you buy books.</p>
+  <div class="buy-options">
+    <a href="https://kdp.amazon.com" target="_blank" class="btn btn-paper-fill">Buy on Amazon</a>
+    <a href="https://ingramspark.com" target="_blank" class="btn btn-paper">IngramSpark</a>
+    <a href="mailto:your@email.com" class="btn btn-paper">Order directly</a>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter-section">
+  <p class="section-label">Stay in touch</p>
+  <h2 class="section-title" style="font-size:1.8rem;">New essays in your inbox</h2>
+  <p>Get new pieces, updates, and the occasional strong opinion — delivered directly to you.</p>
+  <form class="email-form" onsubmit="handleSubscribe(event)">
+    <input type="email" id="email-input" placeholder="your@email.com" required />
+    <button type="submit">Subscribe</button>
+  </form>
+  <p class="email-success" id="email-success">Thanks — you're on the list.</p>
+</section>
+
+<footer>
+  <span>&copy; 2025 Your Name. All rights reserved.</span>
+  <span><a href="mailto:your@email.com">your@email.com</a></span>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  function handleSubscribe(e) {
+    e.preventDefault();
+    document.querySelector('.email-form').style.display = 'none';
+    document.getElementById('email-success').style.display = 'block';
+  }
+</script>
+</body>
+</html>
