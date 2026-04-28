@@ -3,364 +3,241 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Book — Comedy, Politics & Cool</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Joe Askew's Guide to Being Totally Awesome</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=IM+Fell+English:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --ink: #1a1612;
-    --paper: #f5f0e8;
-    --cream: #ede7d9;
-    --accent: #c94f2a;
-    --muted: #7a7060;
-    --border: #d4cbbb;
+    --bg:      #12100e;
+    --bg2:     #1e1a15;
+    --bg3:     #2a2318;
+    --gold:    #c8973a;
+    --gold-lt: #e8d5a0;
+    --gold-dk: #a07828;
+    --muted:   #7a6a50;
+    --text:    #f0e6c8;
+    --border:  rgba(200,151,58,0.25);
   }
 
   html { scroll-behavior: smooth; }
 
   body {
     font-family: 'DM Sans', sans-serif;
-    background: var(--paper);
-    color: var(--ink);
+    background: var(--bg);
+    color: var(--text);
     font-size: 16px;
     line-height: 1.6;
   }
 
-  /* NAV */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image: repeating-linear-gradient(
+      45deg, transparent, transparent 40px,
+      rgba(200,151,58,0.015) 40px, rgba(200,151,58,0.015) 41px
+    );
+  }
+
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
     padding: 1.25rem 3rem;
-    background: var(--paper);
+    background: var(--bg);
     border-bottom: 1px solid var(--border);
   }
   .nav-brand {
     font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    letter-spacing: 0.02em;
-    text-decoration: none;
-    color: var(--ink);
+    font-size: 1rem; letter-spacing: 0.04em;
+    text-decoration: none; color: var(--gold-lt); font-style: italic;
   }
   .nav-links { display: flex; gap: 2rem; list-style: none; }
   .nav-links a {
-    font-size: 0.85rem;
-    font-weight: 400;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--muted);
-    transition: color 0.2s;
+    font-size: 0.75rem; font-weight: 400; letter-spacing: 0.1em;
+    text-transform: uppercase; text-decoration: none;
+    color: var(--muted); transition: color 0.2s;
   }
-  .nav-links a:hover { color: var(--ink); }
+  .nav-links a:hover { color: var(--gold); }
 
-  /* HERO */
   .hero {
-    min-height: 100vh;
-    display: grid;
+    min-height: 100vh; display: grid;
     grid-template-columns: 1fr 1fr;
-    padding-top: 80px;
+    padding-top: 72px; position: relative; z-index: 1;
   }
   .hero-left {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: flex; flex-direction: column; justify-content: center;
     padding: 5rem 4rem 5rem 5rem;
     border-right: 1px solid var(--border);
   }
   .hero-eyebrow {
-    font-size: 0.75rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 500;
-    margin-bottom: 1.5rem;
+    font-family: 'IM Fell English', serif; font-size: 0.85rem;
+    letter-spacing: 0.1em; color: var(--gold); font-style: italic; margin-bottom: 1.5rem;
   }
   .hero-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2.8rem, 5vw, 4.2rem);
-    line-height: 1.1;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
+    font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+    line-height: 1.1; font-weight: 900; margin-bottom: 1.5rem; color: var(--gold-lt);
   }
-  .hero-title em { font-style: italic; color: var(--accent); }
-  .hero-sub {
-    font-size: 1.05rem;
-    color: var(--muted);
-    max-width: 380px;
-    line-height: 1.8;
-    margin-bottom: 2.5rem;
-  }
+  .hero-title em { font-style: italic; color: var(--gold); }
+  .hero-sub { font-size: 1rem; color: var(--muted); max-width: 380px; line-height: 1.9; margin-bottom: 2.5rem; }
+  .hero-divider { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+  .hero-divider-line { flex: 1; height: 1px; background: var(--border); }
+  .hero-divider-diamond { width: 8px; height: 8px; background: var(--gold); transform: rotate(45deg); flex-shrink: 0; }
   .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
   .btn {
-    display: inline-block;
-    padding: 0.85rem 2rem;
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border: 1.5px solid var(--ink);
-    cursor: pointer;
-    transition: all 0.2s;
+    display: inline-block; padding: 0.85rem 2rem;
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; text-decoration: none;
+    border: 1px solid var(--gold); cursor: pointer; transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
   }
-  .btn-fill { background: var(--ink); color: var(--paper); }
-  .btn-fill:hover { background: var(--accent); border-color: var(--accent); }
-  .btn-outline { background: transparent; color: var(--ink); }
-  .btn-outline:hover { background: var(--ink); color: var(--paper); }
+  .btn-fill { background: var(--gold); color: var(--bg); }
+  .btn-fill:hover { background: var(--gold-lt); border-color: var(--gold-lt); }
+  .btn-outline { background: transparent; color: var(--gold); }
+  .btn-outline:hover { background: var(--gold); color: var(--bg); }
 
   .hero-right {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 5rem 4rem;
-    background: var(--cream);
-    position: relative;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 5rem 4rem; background: var(--bg2); position: relative;
   }
+  .hero-right::before, .hero-right::after {
+    content: ''; position: absolute;
+    width: 40px; height: 40px; border-color: var(--gold-dk); border-style: solid; opacity: 0.5;
+  }
+  .hero-right::before { top: 2rem; left: 2rem; border-width: 1px 0 0 1px; }
+  .hero-right::after  { bottom: 2rem; right: 2rem; border-width: 0 1px 1px 0; }
 
-  .book-cover-wrap {
-    position: relative;
-    animation: float 5s ease-in-out infinite;
-  }
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-12px); }
-  }
-  .book-cover-3d {
-    width: 200px;
-    height: 280px;
-    position: relative;
-    transform: perspective(800px) rotateY(-12deg);
+  .book-cover-wrap { position: relative; animation: float 5s ease-in-out infinite; }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
+  .book-3d {
+    width: 210px;
+    transform: perspective(900px) rotateY(-14deg);
     transform-style: preserve-3d;
+    filter: drop-shadow(20px 24px 48px rgba(0,0,0,0.6));
   }
-  .book-face {
-    width: 200px;
-    height: 280px;
-    background: #1a1612;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem 1.5rem;
-    gap: 1rem;
-    box-shadow: 12px 16px 40px rgba(0,0,0,0.25);
-  }
-  .book-face-title {
-    font-family: 'Playfair Display', serif;
-    color: var(--paper);
-    font-size: 1.05rem;
-    text-align: center;
-    line-height: 1.4;
-    font-weight: 700;
-  }
-  .book-face-line {
-    width: 40px;
-    height: 1.5px;
-    background: var(--accent);
-  }
-  .book-face-author {
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-  .book-spine {
-    position: absolute;
-    left: -16px; top: 0;
-    width: 16px; height: 280px;
-    background: #111;
-    transform: rotateY(90deg) translateZ(-8px);
-    transform-origin: right;
-  }
+  .book-3d svg { display: block; width: 210px; }
   .book-shadow {
-    width: 200px; height: 20px;
-    background: radial-gradient(ellipse, rgba(0,0,0,0.2) 0%, transparent 70%);
-    margin-top: 24px;
+    width: 210px; height: 24px;
+    background: radial-gradient(ellipse, rgba(0,0,0,0.5) 0%, transparent 70%);
+    margin-top: 20px;
   }
   .hero-right-label {
-    margin-top: 2.5rem;
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
+    margin-top: 2rem; font-size: 0.7rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--muted);
+    font-family: 'IM Fell English', serif; font-style: italic;
   }
 
-  /* SECTION SHARED */
-  section { padding: 6rem 5rem; }
+  section { padding: 6rem 5rem; position: relative; z-index: 1; }
   .section-label {
-    font-size: 0.7rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 500;
-    margin-bottom: 1rem;
+    font-family: 'IM Fell English', serif; font-size: 0.85rem;
+    letter-spacing: 0.1em; color: var(--gold); font-style: italic; margin-bottom: 1rem;
   }
   .section-title {
     font-family: 'Playfair Display', serif;
     font-size: clamp(1.8rem, 3vw, 2.6rem);
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 1.5rem;
+    font-weight: 700; line-height: 1.2; margin-bottom: 1.5rem; color: var(--gold-lt);
   }
+  .ornament-rule { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+  .ornament-rule-line { flex: 1; height: 1px; background: var(--border); }
+  .ornament-rule-diamond { width: 6px; height: 6px; background: var(--gold); transform: rotate(45deg); }
 
-  /* ABOUT BOOK */
   .about-book {
-    background: var(--ink);
-    color: var(--paper);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
+    background: var(--bg2);
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
   }
-  .about-book .section-label { color: var(--accent); }
-  .about-book .section-title { color: var(--paper); }
-  .about-text { font-size: 1rem; color: #b8ad9e; line-height: 1.9; }
-  .themes {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    margin-top: 3rem;
-  }
+  .about-text { font-size: 1rem; color: var(--muted); line-height: 1.9; }
+  .themes { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
   .theme-card {
-    padding: 1.5rem;
-    border: 1px solid rgba(255,255,255,0.1);
+    padding: 1.5rem; border: 1px solid var(--border);
+    background: var(--bg); position: relative;
+  }
+  .theme-card::before {
+    content: '✦'; position: absolute; top: 0.75rem; right: 0.75rem;
+    font-size: 0.6rem; color: var(--gold-dk); opacity: 0.6;
   }
   .theme-card h4 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1rem;
-    color: var(--paper);
-    margin-bottom: 0.5rem;
-    font-weight: 400;
-    font-style: italic;
+    font-family: 'Playfair Display', serif; font-size: 1rem;
+    color: var(--gold); margin-bottom: 0.5rem; font-weight: 400; font-style: italic;
   }
-  .theme-card p { font-size: 0.85rem; color: #8a8070; line-height: 1.7; }
+  .theme-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
 
-  /* EXCERPT */
   .excerpt-section {
-    background: var(--cream);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
   }
-  .excerpt-inner {
-    max-width: 680px;
-    margin: 0 auto;
-    text-align: center;
-  }
+  .excerpt-inner { max-width: 680px; margin: 0 auto; text-align: center; }
   .pull-quote {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(1.4rem, 2.5vw, 2rem);
-    line-height: 1.5;
-    font-style: italic;
-    color: var(--ink);
-    margin: 2rem 0;
-    position: relative;
-    padding: 0 2rem;
+    font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+    line-height: 1.6; font-style: italic; color: var(--gold-lt);
+    margin: 2rem 0; padding: 0 1rem;
   }
-  .pull-quote::before, .pull-quote::after {
-    content: '"';
-    font-size: 4rem;
-    color: var(--accent);
-    line-height: 0;
-    vertical-align: -0.4em;
-  }
-  .pull-quote::after { content: '"'; }
-  .excerpt-credit {
-    font-size: 0.8rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
+  .pull-quote::before { content: '\201C'; font-size: 4rem; color: var(--gold); line-height: 0; vertical-align: -0.4em; margin-right: 0.1em; }
+  .pull-quote::after  { content: '\201D'; font-size: 4rem; color: var(--gold); line-height: 0; vertical-align: -0.4em; margin-left: 0.1em; }
+  .excerpt-credit { font-family: 'IM Fell English', serif; font-size: 0.85rem; letter-spacing: 0.1em; color: var(--muted); font-style: italic; }
 
-  /* AUTHOR */
   .author-section {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: center;
+    background: var(--bg2);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+    border-bottom: 1px solid var(--border);
   }
   .author-photo {
-    aspect-ratio: 3/4;
-    background: var(--cream);
-    border: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--muted);
-    font-size: 0.9rem;
-    letter-spacing: 0.05em;
-    text-align: center;
-    padding: 2rem;
+    aspect-ratio: 3/4; background: var(--bg); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--muted); font-size: 0.85rem; letter-spacing: 0.05em;
+    text-align: center; padding: 2rem;
+    font-family: 'IM Fell English', serif; font-style: italic; position: relative;
   }
+  .author-photo::before, .author-photo::after {
+    content: ''; position: absolute;
+    width: 30px; height: 30px; border-color: var(--gold-dk); border-style: solid; opacity: 0.4;
+  }
+  .author-photo::before { top: 12px; left: 12px; border-width: 1px 0 0 1px; }
+  .author-photo::after  { bottom: 12px; right: 12px; border-width: 0 1px 1px 0; }
   .author-bio { font-size: 1rem; color: var(--muted); line-height: 1.9; }
   .author-bio p + p { margin-top: 1rem; }
 
-  /* BUY */
   .buy-section {
-    background: var(--accent);
-    color: var(--paper);
-    text-align: center;
-    padding: 5rem;
+    background: var(--bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    text-align: center; padding: 6rem 5rem;
   }
-  .buy-section .section-title { color: var(--paper); }
-  .buy-section p { color: rgba(245,240,232,0.8); max-width: 500px; margin: 0 auto 2.5rem; font-size: 1rem; }
+  .buy-section p { color: var(--muted); max-width: 500px; margin: 0 auto 2.5rem; font-size: 1rem; }
   .buy-options { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-  .btn-paper { border-color: var(--paper); color: var(--paper); background: transparent; }
-  .btn-paper:hover { background: var(--paper); color: var(--accent); }
-  .btn-paper-fill { background: var(--paper); color: var(--accent); border-color: var(--paper); }
-  .btn-paper-fill:hover { background: transparent; color: var(--paper); }
 
-  /* NEWSLETTER */
-  .newsletter-section {
-    border-top: 1px solid var(--border);
-    text-align: center;
-    padding: 5rem;
-  }
+  .newsletter-section { background: var(--bg2); text-align: center; padding: 5rem; }
   .newsletter-section p { color: var(--muted); max-width: 400px; margin: 0 auto 2rem; }
-  .email-form { display: flex; gap: 0; max-width: 420px; margin: 0 auto; }
+  .email-form { display: flex; max-width: 420px; margin: 0 auto; }
   .email-form input {
-    flex: 1;
-    padding: 0.85rem 1.25rem;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.9rem;
-    background: var(--cream);
-    border: 1.5px solid var(--border);
-    border-right: none;
-    color: var(--ink);
-    outline: none;
+    flex: 1; padding: 0.85rem 1.25rem;
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+    background: var(--bg); border: 1px solid var(--border); border-right: none;
+    color: var(--text); outline: none;
   }
   .email-form input::placeholder { color: var(--muted); }
+  .email-form input:focus { border-color: var(--gold-dk); }
   .email-form button {
-    padding: 0.85rem 1.5rem;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-    background: var(--ink);
-    color: var(--paper);
-    border: 1.5px solid var(--ink);
-    cursor: pointer;
-    transition: all 0.2s;
+    padding: 0.85rem 1.5rem; font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+    background: var(--gold); color: var(--bg); border: 1px solid var(--gold);
+    cursor: pointer; transition: all 0.2s;
   }
-  .email-form button:hover { background: var(--accent); border-color: var(--accent); }
-  .email-success { display: none; color: var(--accent); font-size: 0.9rem; margin-top: 1rem; }
+  .email-form button:hover { background: var(--gold-lt); border-color: var(--gold-lt); }
+  .email-success { display: none; color: var(--gold); font-size: 0.9rem; margin-top: 1rem; font-family: 'IM Fell English', serif; font-style: italic; }
 
-  /* FOOTER */
   footer {
-    background: var(--ink);
-    color: var(--muted);
-    padding: 2rem 5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 0.8rem;
-    border-top: 1px solid #2a2520;
+    background: var(--bg); color: var(--muted); padding: 2rem 5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 0.8rem; border-top: 1px solid var(--border);
   }
-  footer a { color: var(--muted); text-decoration: none; }
-  footer a:hover { color: var(--paper); }
+  footer a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  footer a:hover { color: var(--gold); }
+  .footer-ornament { display: flex; gap: 8px; align-items: center; }
+  .footer-diamond { width: 5px; height: 5px; background: var(--gold-dk); transform: rotate(45deg); opacity: 0.5; }
 
-  /* SCROLL REVEAL */
-  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.75s ease, transform 0.75s ease; }
   .reveal.visible { opacity: 1; transform: none; }
 
   @media (max-width: 768px) {
@@ -370,9 +247,9 @@
     .hero-left { padding: 3rem 1.5rem; }
     .hero-right { padding: 3rem 1.5rem; border-top: 1px solid var(--border); }
     section { padding: 4rem 1.5rem; }
-    .about-book { grid-template-columns: 1fr; gap: 2.5rem; }
-    .author-section { grid-template-columns: 1fr; gap: 2rem; }
-    .buy-section, .newsletter-section, footer { padding: 4rem 1.5rem; }
+    .about-book, .author-section { grid-template-columns: 1fr; gap: 2.5rem; }
+    .buy-section, .newsletter-section { padding: 4rem 1.5rem; }
+    footer { padding: 2rem 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
   }
 </style>
 </head>
@@ -388,12 +265,12 @@
   </ul>
 </nav>
 
-<!-- HERO -->
 <section class="hero" style="padding:0;">
   <div class="hero-left">
     <p class="hero-eyebrow">New release · 2025</p>
     <h1 class="hero-title">Essays on <em>comedy,</em> politics &amp; the art of cool</h1>
-   <p class="hero-sub">My book is for anyone who wants to know things and grow as a person.Whether your the most popular man alive, or just a regular person who wants to grow and develop with the help of Chuck Norris memes. Each chapter covers an important subject, each very importantin modern society (including chicken cooked in cough syrup). Enjoy!</p>
+    <div class="hero-divider"><div class="hero-divider-line"></div><div class="hero-divider-diamond"></div><div class="hero-divider-line"></div></div>
+    <p class="hero-sub">Sharp, funny, and occasionally wise — a collection of pieces on the world as it is, and as it really should be.</p>
     <div class="hero-actions">
       <a href="#buy" class="btn btn-fill">Get the book</a>
       <a href="#excerpt" class="btn btn-outline">Read a sample</a>
@@ -401,14 +278,81 @@
   </div>
   <div class="hero-right">
     <div class="book-cover-wrap">
-      <div class="book-cover-3d">
-        <div class="book-face">
-          <div class="book-face-line"></div>
-          <span class="book-face-title">Joe Askew's guide to being Totally Awesome</span>
-          <div class="book-face-line"></div>
-          <span class="book-face-author">Joe Askew (aka Ace)</span>
-        </div>
-        <div class="book-spine"></div>
+      <div class="book-3d">
+        <svg viewBox="0 0 680 960" xmlns="http://www.w3.org/2000/svg" style="width:210px;display:block;">
+          <rect width="680" height="960" fill="#12100e"/>
+          <g opacity="0.04">
+            <line x1="0" y1="0" x2="680" y2="960" stroke="#e8d5a0" stroke-width="1"/>
+            <line x1="80" y1="0" x2="760" y2="960" stroke="#e8d5a0" stroke-width="1"/>
+            <line x1="160" y1="0" x2="840" y2="960" stroke="#e8d5a0" stroke-width="1"/>
+            <line x1="-80" y1="0" x2="600" y2="960" stroke="#e8d5a0" stroke-width="1"/>
+            <line x1="-160" y1="0" x2="520" y2="960" stroke="#e8d5a0" stroke-width="1"/>
+          </g>
+          <rect x="24" y="24" width="632" height="912" fill="none" stroke="#c8973a" stroke-width="2"/>
+          <rect x="36" y="36" width="608" height="888" fill="none" stroke="#c8973a" stroke-width="0.75" stroke-dasharray="6,3"/>
+          <g fill="#c8973a">
+            <rect x="24" y="24" width="40" height="3"/><rect x="24" y="24" width="3" height="40"/>
+            <rect x="44" y="44" width="24" height="2"/><rect x="44" y="44" width="2" height="24"/>
+            <circle cx="58" cy="58" r="4"/><circle cx="58" cy="58" r="2" fill="#12100e"/>
+            <rect x="616" y="24" width="40" height="3"/><rect x="653" y="24" width="3" height="40"/>
+            <rect x="612" y="44" width="24" height="2"/><rect x="634" y="44" width="2" height="24"/>
+            <circle cx="622" cy="58" r="4"/><circle cx="622" cy="58" r="2" fill="#12100e"/>
+            <rect x="24" y="933" width="40" height="3"/><rect x="24" y="896" width="3" height="40"/>
+            <rect x="44" y="914" width="24" height="2"/><rect x="44" y="892" width="2" height="24"/>
+            <circle cx="58" cy="902" r="4"/><circle cx="58" cy="902" r="2" fill="#12100e"/>
+            <rect x="616" y="933" width="40" height="3"/><rect x="653" y="896" width="3" height="40"/>
+            <rect x="612" y="914" width="24" height="2"/><rect x="634" y="892" width="2" height="24"/>
+            <circle cx="622" cy="902" r="4"/><circle cx="622" cy="902" r="2" fill="#12100e"/>
+          </g>
+          <rect x="24" y="80" width="632" height="1" fill="#c8973a" opacity="0.5"/>
+          <rect x="24" y="88" width="632" height="1" fill="#c8973a" opacity="0.3"/>
+          <text x="340" y="72" text-anchor="middle" font-family="Georgia,serif" fill="#c8973a" font-size="13" letter-spacing="4" opacity="0.9">A COMPLETE &amp; AUTHORITATIVE</text>
+          <g fill="#c8973a" opacity="0.7">
+            <polygon points="340,98 346,104 340,110 334,104"/>
+            <polygon points="310,98 316,104 310,110 304,104"/>
+            <polygon points="370,98 376,104 370,110 364,104"/>
+            <polygon points="280,98 286,104 280,110 274,104"/>
+            <polygon points="400,98 406,104 400,110 394,104"/>
+            <polygon points="250,98 256,104 250,110 244,104"/>
+            <polygon points="430,98 436,104 430,110 424,104"/>
+          </g>
+          <text x="340" y="195" text-anchor="middle" font-family="'Playfair Display',Georgia,serif" fill="#e8d5a0" font-size="42" font-weight="700" letter-spacing="8">JOE ASKEW'S</text>
+          <line x1="80" y1="214" x2="296" y2="214" stroke="#c8973a" stroke-width="1"/>
+          <polygon points="340,207 348,214 340,221 332,214" fill="#c8973a"/>
+          <line x1="384" y1="214" x2="600" y2="214" stroke="#c8973a" stroke-width="1"/>
+          <text x="340" y="262" text-anchor="middle" font-family="Georgia,serif" fill="#c8973a" font-size="22" letter-spacing="10" font-style="italic">GUIDE TO</text>
+          <text x="340" y="360" text-anchor="middle" font-family="'Playfair Display',Georgia,serif" fill="#f0e6c8" font-size="96" font-weight="900" letter-spacing="2">BEING</text>
+          <text x="340" y="460" text-anchor="middle" font-family="'Playfair Display',Georgia,serif" fill="#c8973a" font-size="76" font-weight="700" letter-spacing="6" font-style="italic">Totally</text>
+          <text x="340" y="560" text-anchor="middle" font-family="'Playfair Display',Georgia,serif" fill="#f0e6c8" font-size="88" font-weight="900" letter-spacing="4">AWESOME</text>
+          <rect x="60" y="580" width="560" height="1.5" fill="#c8973a" opacity="0.6"/>
+          <rect x="80" y="585" width="520" height="0.75" fill="#c8973a" opacity="0.3"/>
+          <g transform="translate(340,700)">
+            <g stroke="#c8973a" stroke-width="0.75" opacity="0.35">
+              <line x1="0" y1="-90" x2="0" y2="-130"/><line x1="0" y1="90" x2="0" y2="130"/>
+              <line x1="-90" y1="0" x2="-130" y2="0"/><line x1="90" y1="0" x2="130" y2="0"/>
+              <line x1="-64" y1="-64" x2="-92" y2="-92"/><line x1="64" y1="-64" x2="92" y2="-92"/>
+              <line x1="-64" y1="64" x2="-92" y2="92"/><line x1="64" y1="64" x2="92" y2="92"/>
+              <line x1="-34" y1="-84" x2="-48" y2="-120"/><line x1="34" y1="-84" x2="48" y2="-120"/>
+              <line x1="-34" y1="84" x2="-48" y2="120"/><line x1="34" y1="84" x2="48" y2="120"/>
+              <line x1="-84" y1="-34" x2="-120" y2="-48"/><line x1="84" y1="-34" x2="120" y2="-48"/>
+              <line x1="-84" y1="34" x2="-120" y2="48"/><line x1="84" y1="34" x2="120" y2="48"/>
+            </g>
+            <circle cx="0" cy="0" r="88" fill="none" stroke="#c8973a" stroke-width="1" opacity="0.5"/>
+            <circle cx="0" cy="0" r="80" fill="none" stroke="#c8973a" stroke-width="0.5" opacity="0.3"/>
+            <circle cx="0" cy="0" r="76" fill="#1e1a15" stroke="#c8973a" stroke-width="0.75" opacity="0.9"/>
+            <text x="0" y="12" text-anchor="middle" font-family="Georgia,serif" fill="#c8973a" font-size="38" font-style="italic" opacity="0.9">✦</text>
+            <circle cx="0" cy="0" r="40" fill="none" stroke="#c8973a" stroke-width="0.75" opacity="0.4"/>
+          </g>
+          <text x="340" y="818" text-anchor="middle" font-family="Georgia,serif" fill="#a08858" font-size="14" letter-spacing="3" font-style="italic">Comedy · Politics · The Art of Cool</text>
+          <rect x="60" y="832" width="560" height="1" fill="#c8973a" opacity="0.4"/>
+          <g fill="#c8973a" opacity="0.6">
+            <polygon points="340,844 345,849 340,854 335,849"/>
+            <polygon points="318,844 323,849 318,854 313,849"/>
+            <polygon points="362,844 367,849 362,854 357,849"/>
+          </g>
+          <text x="340" y="900" text-anchor="middle" font-family="'Playfair Display',Georgia,serif" fill="#e8d5a0" font-size="18" letter-spacing="6" font-weight="700">JOE ASKEW</text>
+          <text x="340" y="920" text-anchor="middle" font-family="Georgia,serif" fill="#a08858" font-size="11" letter-spacing="3" font-style="italic">First Edition</text>
+        </svg>
       </div>
       <div class="book-shadow"></div>
     </div>
@@ -416,72 +360,54 @@
   </div>
 </section>
 
-<!-- ABOUT THE BOOK -->
 <section id="book" class="about-book">
   <div class="reveal">
     <p class="section-label">The book</p>
-    <h2 class="section-title">Why you should care about all four</h2>
-    <p class="about-text"> This is a really cool, potentially life-changing book. Nuff said.</p>
+    <h2 class="section-title">Why you should care about all three</h2>
+    <div class="ornament-rule"><div class="ornament-rule-line"></div><div class="ornament-rule-diamond"></div><div class="ornament-rule-line"></div></div>
+    <p class="about-text">Replace this with your own book description. Tell readers what to expect, what drove you to write it, and what makes this collection unlike anything else out there. Be as bold and funny here as you are in the essays themselves.</p>
   </div>
   <div class="themes reveal">
-    <div class="theme-card">
-      <h4>Comedy</h4>
-      <p>What laughter reveals about us — and what we use it to hide.</p>
-    </div>
-    <div class="theme-card">
-      <h4>Politics</h4>
-      <p>Ideas worth arguing about, argued about with the vigour they deserve.</p>
-    </div>
-    <div class="theme-card">
-      <h4>Coolness</h4>
-      <p>A moving target, an attitude, and occasionally a state of mind.</p>
-    </div>
-    <div class="theme-card">
-      <h4>Everything else</h4>
-      <p>Whatever doesn't fit a label but felt important to write.</p>
-    </div>
+    <div class="theme-card"><h4>Comedy</h4><p>What laughter reveals about us — and what we use it to hide.</p></div>
+    <div class="theme-card"><h4>Politics</h4><p>Ideas worth arguing about, argued about with the vigour they deserve.</p></div>
+    <div class="theme-card"><h4>Coolness</h4><p>A moving target, an attitude, and occasionally a state of mind.</p></div>
+    <div class="theme-card"><h4>Everything else</h4><p>Whatever doesn't fit a label but felt important to write.</p></div>
   </div>
 </section>
 
-<!-- EXCERPT -->
 <section id="excerpt" class="excerpt-section">
   <div class="excerpt-inner reveal">
     <p class="section-label">From the book</p>
-    <blockquote class="pull-quote">
-      Chuck Norris doesn't believe in God.Go9d believes in Chuck Norris
-    </blockquote>
+    <blockquote class="pull-quote">Paste a memorable line or opening sentence from one of your best essays right here. Make it sing.</blockquote>
     <p class="excerpt-credit">— Chapter One</p>
   </div>
 </section>
 
-<!-- AUTHOR -->
 <section id="author" class="author-section">
-  <div class="author-photo reveal">
-    [ Your photo here ]
-  </div>
+  <div class="author-photo reveal">[ Your photo here ]</div>
   <div class="reveal">
     <p class="section-label">The author</p>
     <h2 class="section-title">Joe Askew</h2>
+    <div class="ornament-rule"><div class="ornament-rule-line"></div><div class="ornament-rule-diamond"></div><div class="ornament-rule-line"></div></div>
     <div class="author-bio">
-      <p>What's up? I'm Joe Askew, totally awesome dude that you've never heard about. "Why?", you ask? Because I'm too cool to be known by the masses.</p>
-      <p>I'm from warickshire, England and I have decided to share all my divine knowledge with you. Sure, you might think that "facts" about Chuck Norris isn't going to change your life, but, believe me it might. So read my newbook, and discover the secrets of the universe . . .</p>
+      <p>This is where you introduce yourself. Keep it warm, a little funny, and true to your voice — readers of essay collections want to feel like they know the person behind the words.</p>
+      <p>Mention where you're from, what you care about, and what made you write this book. Two or three paragraphs is plenty.</p>
     </div>
   </div>
 </section>
 
-<!-- BUY -->
 <section id="buy" class="buy-section">
-  <p class="section-label" style="color:rgba(245,240,232,0.6);">Get your copy</p>
+  <p class="section-label">Get your copy</p>
   <h2 class="section-title">Ready to read?</h2>
+  <div class="ornament-rule" style="max-width:300px;margin:0 auto 1.5rem;"><div class="ornament-rule-line"></div><div class="ornament-rule-diamond"></div><div class="ornament-rule-line"></div></div>
   <p>Available as a paperback and ebook. Pick wherever you buy books.</p>
   <div class="buy-options">
-    <a href="https://kdp.amazon.com" target="_blank" class="btn btn-paper-fill">Buy on Amazon</a>
-    <a href="https://ingramspark.com" target="_blank" class="btn btn-paper">IngramSpark</a>
-    <a href="mailto:your@email.com" class="btn btn-paper">Order directly</a>
+    <a href="https://kdp.amazon.com" target="_blank" class="btn btn-fill">Buy on Amazon</a>
+    <a href="https://ingramspark.com" target="_blank" class="btn btn-outline">IngramSpark</a>
+    <a href="mailto:your@email.com" class="btn btn-outline">Order directly</a>
   </div>
 </section>
 
-<!-- NEWSLETTER -->
 <section class="newsletter-section">
   <p class="section-label">Stay in touch</p>
   <h2 class="section-title" style="font-size:1.8rem;">New essays in your inbox</h2>
@@ -494,16 +420,20 @@
 </section>
 
 <footer>
-  <span>&copy; 2025 Your Name. All rights reserved.</span>
+  <span>&copy; 2025 Joe Askew. All rights reserved.</span>
+  <div class="footer-ornament">
+    <div class="footer-diamond"></div>
+    <div class="footer-diamond"></div>
+    <div class="footer-diamond"></div>
+  </div>
   <span><a href="mailto:your@email.com">your@email.com</a></span>
 </footer>
 
 <script>
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
   function handleSubscribe(e) {
     e.preventDefault();
     document.querySelector('.email-form').style.display = 'none';
